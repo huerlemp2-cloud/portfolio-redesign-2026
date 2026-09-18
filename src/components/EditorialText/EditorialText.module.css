@@ -1,0 +1,12 @@
+.prose {
+  max-width: 68ch;
+  color: var(--color-text);
+  font-size: var(--text-narrative);
+  line-height: var(--leading-relaxed);
+}
+
+.prose :global(h3),
+.prose :global(h4) {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-3);
+}

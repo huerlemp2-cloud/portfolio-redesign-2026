@@ -1,0 +1,1 @@
+export { EditorialText } from './EditorialText';

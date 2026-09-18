@@ -1,0 +1,162 @@
+/**
+ * Design tokens — Portfolio Master (editorial shell)
+ *
+ * Source of truth: Figma "Portfolio Master" (fileKey knxEHM4Cx7F6LJUnyM0C3I)
+ * for spacing/radius/layout; the dark Visual Master (Checkpoint 8A) for
+ * colour, now the approved palette for the entire portfolio shell as of
+ * CP9 (Global Portfolio Visual System).
+ *
+ * These are PORTFOLIO SHELL tokens only. LUFI and IntelliShop case-study
+ * content keep their own product visual identity and must NOT be recoloured
+ * to match this palette — see --lufi-* / --intellishop-* namespaces below.
+ * Those namespaces are currently unused in any rendered page (only
+ * referenced by the orphaned, unrendered HeroShowcase component) — left
+ * untouched, not part of CP9's scope.
+ */
+
+:root {
+  /* ---- Portfolio shell colour ----
+     CP9 (Global Portfolio Visual System): repointed to the approved dark
+     Visual Master rather than duplicated. Every shared component and
+     every route's own styles consume these --color-* names already, so
+     redefining them here propagates the dark system portfolio-wide
+     without rewriting each page's CSS individually — consolidation per
+     the CP9 brief ("reuse existing --vm-* tokens... do not add
+     unnecessary palette tokens when an approved equivalent already
+     exists"). The original light hex values are kept alongside, commented,
+     as a record of the pre-CP9 palette, not for reuse. */
+  --color-bg: var(--vm-obsidian); /* was #fafaf8 */
+  --color-surface: var(--vm-surface); /* was #ffffff */
+  --color-text: var(--vm-ivory); /* was #161614 */
+  --color-text-secondary: var(--vm-text-secondary); /* was #4a4844 */
+  /* CP9.1 accessibility correction: --vm-text-muted (#74716c) measured
+     under WCAG AA (~4.0:1 on obsidian, ~3.4:1 on surface) for the normal
+     body-size text this alias is actually used for (SectionHeader/
+     ContactCTA/PrototypeCTA descriptions, tag/label text, case-study
+     explanatory copy). --vm-text-muted itself is intentionally left
+     unchanged (Home may rely on it as-is) — only this shell alias moves,
+     to a mix of the already-approved --vm-text-secondary and
+     --vm-obsidian rather than a new hue. Static hex fallback first for
+     engines without color-mix() support; the color-mix() line below it
+     wins wherever supported (same value, ~#8b8882). */
+  --color-text-muted: #8b8882;
+  --color-text-muted: color-mix(in srgb, var(--vm-text-secondary) 82%, var(--vm-obsidian));
+  --color-border: var(--vm-hairline); /* was #e3e1dc */
+  --color-accent: var(--vm-bronze-highlight); /* was #a9552e — matches the
+    bronze-highlight tone Home already uses for links/CTAs/hover, verified
+    ~7–8:1 against obsidian/charcoal */
+
+  /* ---- Derived from the above — re-derived for the dark system, same
+     role each token played before (inverse/contrast band, stronger
+     accent/border variants, subtle text, focus ring). ---- */
+  --color-bg-inverse: var(--vm-ivory); /* was #161614 — "inverse" now
+    means a light contrast band within the dark shell, the same relative
+    relationship as before (opposite of the page background) */
+  --color-text-on-inverse: var(--vm-obsidian); /* was #fafaf8 */
+  --color-text-subtle: var(--color-text-muted);
+  --color-accent-strong: var(--vm-bronze); /* was #8a431f — the deeper of
+    the two approved bronze tones, for pressed/strong states */
+  --color-accent-muted: rgba(208, 138, 88, 0.45); /* was #c98a63 — bronze
+    at reduced opacity rather than a new hue, for subtle emphasis */
+  --color-border-strong: rgba(241, 237, 229, 0.22); /* was #cfccc3 — a
+    brighter step of the same hairline family, not a new tone */
+  --color-focus-ring: var(--vm-bronze-highlight); /* was #a9552e */
+
+  /* ---- LUFI product-identity namespace — CONFIRMED from the LUFI Memory
+     Control composition (Portfolio Master node 119:174). Not currently
+     referenced in code (the temporary LufiMemoryVisual reproduction that
+     used them was removed once the real exported PNG landed) — kept here
+     for the LUFI case-study page at Checkpoint 4, scoped to that page's
+     own styles, never applied to the portfolio shell. ---- */
+  --lufi-bg-foundation: #15171a;
+  --lufi-bg-card: #191c1f;
+  --lufi-gold-governed: #f0c36b;
+  --lufi-text-heading: #f5f5f0;
+  --lufi-text-body: #c4c4c8;
+  --lufi-text-muted: #8c8c92;
+  --lufi-hairline: #282e32;
+  --lufi-destructive-border: #c0392b;
+  --lufi-destructive-text: #e8a090;
+
+  /* ---- IntelliShop product-identity namespace — CONFIRMED from the
+     Shopping Mode V2 screen (node 121:67). Not currently referenced in
+     code for the same reason as the LUFI block above — kept for the
+     IntelliShop case-study page at Checkpoint 5. ---- */
+  --intellishop-canvas: #f8fafc;
+  --intellishop-card: #ffffff;
+  --intellishop-border: #cbd5e1;
+  --intellishop-content-primary: #0f172a;
+  --intellishop-content-secondary: #475569;
+  --intellishop-content-muted: #64748b;
+  --intellishop-action-primary: #4338ca;
+  --intellishop-status-warning: #b45309;
+  --intellishop-status-success: #15803d;
+  --intellishop-status-success-subtle: #ecfdf5;
+
+  /* ---- Visual Master (dark cinematic) — CONFIRMED, supplied directly as
+     hex values (Checkpoint 8A brief). As of CP9 this is the foundation
+     for the entire portfolio shell — the --color-* tokens above alias to
+     these. Kept as its own namespace (rather than inlining the hex
+     values into --color-*) so Home's own styles, which reference --vm-*
+     directly, and the rest of the shell, which goes through --color-*,
+     stay in provable lockstep — one edit here moves both. */
+  --vm-obsidian: #0b0d0f;
+  --vm-charcoal: #13161a;
+  --vm-surface: #1b1f24;
+  --vm-ivory: #f1ede5;
+  --vm-text-secondary: #a7a39b;
+  --vm-text-muted: #74716c;
+  --vm-bronze: #b66a3c;
+  --vm-bronze-highlight: #d08a58;
+  --vm-hairline: rgba(241, 237, 229, 0.12);
+
+  /* ---- Spacing scale — CONFIRMED: 4 / 8 / 16 / 24 / 40 / 64 / 96px ---- */
+  --space-1: 0.25rem; /* 4px */
+  --space-2: 0.5rem; /* 8px */
+  --space-3: 1rem; /* 16px */
+  --space-4: 1.5rem; /* 24px */
+  --space-5: 2.5rem; /* 40px */
+  --space-6: 4rem; /* 64px */
+  --space-7: 6rem; /* 96px */
+
+  /* ---- Radius — CONFIRMED: 4px controls, 12px surfaces ---- */
+  --radius-control: 4px; /* buttons, tags */
+  --radius-surface: 12px; /* cards, media containers */
+
+  /* ---- Layout — CONFIRMED ----
+     Desktop: 1200px content max-width, 72px page margins, 24px gutters
+     (12-column conceptual grid), ~680px long-form reading width.
+     Tablet: 48px margins. Mobile: 20px margins, single-column projects. */
+  --container-max: 1200px;
+  --container-max-narrow: 680px; /* editorial reading width for case-study prose */
+  --container-padding: 1.25rem; /* 20px — mobile margin; overridden at tablet/desktop below */
+  --gutter: 1.5rem; /* 24px */
+  --header-height: 88px; /* sticky header offset — keep in sync with Section's scroll-margin-top */
+
+  /* ---- Motion — intentional, not decorative ---- */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 120ms;
+  --duration-standard: 220ms;
+}
+
+/* Reduced-motion: collapse durations rather than removing transitions outright,
+   so state changes still register without motion. */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-fast: 0ms;
+    --duration-standard: 0ms;
+  }
+}
+
+/* Page margins — CONFIRMED stepped values (20px mobile / 48px tablet / 72px
+   desktop), not a fluid clamp, per the Portfolio Master layout foundation. */
+@media (min-width: 768px) {
+  :root {
+    --container-padding: 3rem; /* 48px */
+  }
+}
+@media (min-width: 1024px) {
+  :root {
+    --container-padding: 4.5rem; /* 72px */
+  }
+}

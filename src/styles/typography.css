@@ -1,0 +1,110 @@
+/**
+ * Typography architecture — Portfolio Master
+ *
+ * Inter is the functional/body typeface throughout (nav, labels, body
+ * copy, metadata, captions, dense subsection headings — h3/h4). Fraunces
+ * is the editorial serif, introduced at Checkpoint 8A for Home and
+ * extended portfolio-wide at CP9 to major page titles and major section
+ * headings (h1/h2) and editorial quotations — not blindly to every
+ * heading level, so the frequent h3/h4 subsection headings inside
+ * long-form case studies (dozens per case study) stay Inter for density
+ * and readability. --font-display remains the Inter alias used by h3/h4
+ * and anything else that intentionally stays functional rather than
+ * editorial.
+ *
+ * CONFIRMED desktop type hierarchy (baseline; clamp() still used for
+ * responsive scaling down from these values):
+ *   Hero              40px / Bold
+ *   Project title      28px / Bold
+ *   Section heading    18px / Bold
+ *   Case-study narrative 15px / Regular
+ *   Caption / metadata  12px / Regular
+ *   Label / nav         11px / Semi Bold
+ */
+
+:root {
+  --font-body: var(--font-inter), -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Helvetica, Arial, sans-serif;
+  --font-display: var(--font-body); /* h3/h4 and other functional headings */
+
+  /* Editorial serif — Fraunces: open-source (Google Fonts, no licensing
+     risk), editorial/architectural character without being ornamental or
+     vintage. Applied to h1/h2 (see the rule below) and editorial
+     quotations (Quote component). */
+  --font-serif: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+
+  /* Semantic type scale — CONFIRMED desktop values, fluid down on mobile */
+  --text-label: clamp(0.625rem, 0.6rem + 0.1vw, 0.6875rem); /* 10px → 11px */
+  --text-caption: clamp(0.6875rem, 0.66rem + 0.15vw, 0.75rem); /* 11px → 12px */
+  --text-narrative: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem); /* 13px → 15px */
+  --text-section-heading: clamp(0.9375rem, 0.85rem + 0.4vw, 1.125rem); /* 15px → 18px */
+  --text-project-title: clamp(1.375rem, 1.1rem + 1.2vw, 1.75rem); /* 22px → 28px */
+  --text-hero: clamp(1.75rem, 1.2rem + 2.4vw, 2.5rem); /* 28px → 40px */
+
+  --leading-tight: 1.1;
+  --leading-snug: 1.3;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.75;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  margin: 0;
+}
+
+/* Major titles and major section headings — the editorial serif
+   (CP9). h3/h4 (dense subsection headings within long-form case-study
+   prose) intentionally stay on the rule above (Inter). */
+h1,
+h2 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+/* Tag defaults map to the confirmed hierarchy; components override the
+   class explicitly (e.g. SectionHeader's `project` size variant) where a
+   heading needs a different visual role than its semantic tag implies. */
+h1 {
+  font-size: var(--text-hero);
+}
+h2 {
+  font-size: var(--text-project-title);
+}
+h3 {
+  font-size: var(--text-section-heading);
+}
+h4 {
+  font-size: var(--text-section-heading);
+  font-weight: var(--weight-semibold);
+}
+
+body,
+p,
+li {
+  font-family: var(--font-body);
+  font-size: var(--text-narrative);
+  line-height: var(--leading-normal);
+  font-weight: var(--weight-regular);
+}
+
+/* Editorial reading rhythm for long-form case-study prose.
+   Applied via the EditorialText component, not globally. */
+.editorial-prose p + p {
+  margin-top: var(--space-3);
+}

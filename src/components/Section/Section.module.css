@@ -1,0 +1,44 @@
+.section {
+  width: 100%;
+  /* Reserves space for the sticky SiteHeader so in-page anchors
+     (e.g. '/#work') don't land underneath it. Matches --header-height,
+     kept as a literal here since CSS custom properties can't be read
+     inside scroll-margin-top on all supported browsers reliably. */
+  scroll-margin-top: 88px;
+}
+
+.default {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+.raised {
+  background-color: var(--color-surface);
+  color: var(--color-text);
+}
+
+.inverse {
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-on-inverse);
+}
+
+.spacing-sm {
+  padding-block: var(--space-5);
+}
+
+.spacing-md {
+  padding-block: var(--space-6);
+}
+
+.spacing-lg {
+  padding-block: var(--space-7);
+}
+
+@media (max-width: 640px) {
+  .spacing-lg {
+    padding-block: var(--space-5);
+  }
+  .spacing-md {
+    padding-block: var(--space-5);
+  }
+}

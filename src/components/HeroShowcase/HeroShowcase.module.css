@@ -1,0 +1,130 @@
+.showcase {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.slide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  width: 100%;
+  animation: showcase-fade-in var(--duration-standard) var(--ease-standard);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .slide {
+    animation: none;
+  }
+}
+
+@keyframes showcase-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slideLabel {
+  margin: 0;
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  font-size: var(--text-section-heading);
+  font-weight: var(--weight-bold);
+  color: var(--color-text);
+}
+
+.slideIndex {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.slideRole {
+  font-size: var(--text-narrative);
+  font-weight: var(--weight-regular);
+  color: var(--color-text-muted);
+}
+
+/* Minimal device frame — subtle border, phone-like radius, no shadow, no
+   gloss. The product UI stays the visual focus. */
+.deviceFrame {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  background-color: var(--color-surface);
+}
+
+.deviceImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* LUFI slide — a restrained acknowledgment of the graphite/gold identity
+   around the frame only, not applied to the rest of the Hero. */
+.slideLufi .deviceFrame {
+  border-color: var(--lufi-hairline, var(--color-border));
+  background-color: var(--lufi-bg-foundation, var(--color-surface));
+}
+
+/* IntelliShop slide — keeps its own (lighter) identity, distinct from LUFI. */
+.slideIntellishop .deviceFrame {
+  border-color: var(--intellishop-border, var(--color-border));
+  background-color: var(--intellishop-canvas, var(--color-surface));
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.navButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  min-height: 44px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: 50%;
+  color: var(--color-text);
+  font-size: 1.125rem;
+  transition: border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard);
+}
+.navButton:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+.indicators {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.indicator {
+  min-width: 32px;
+  min-height: 32px;
+  padding-inline: var(--space-1);
+  border-radius: var(--radius-control);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  color: var(--color-text-muted);
+}
+.indicator:hover {
+  color: var(--color-accent);
+}
+.indicator[aria-current='true'] {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}

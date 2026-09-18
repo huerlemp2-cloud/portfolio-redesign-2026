@@ -1,0 +1,44 @@
+.footer {
+  border-top: 1px solid var(--vm-hairline);
+  background-color: var(--vm-obsidian);
+  padding-block: var(--space-6);
+}
+
+.inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: var(--space-5);
+}
+
+.name {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: var(--text-section-heading);
+  font-weight: var(--weight-bold);
+  color: var(--vm-ivory);
+}
+
+.positioning {
+  margin: var(--space-1) 0 0;
+  color: var(--vm-text-secondary);
+  font-size: var(--text-narrative);
+}
+
+.links {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+/* TextLink's own default (--color-accent) now resolves to the same
+   bronze-highlight tone as of CP9's token consolidation — this used to
+   need a footer-scoped !important override back when --color-accent was
+   still the light-system orange; no longer necessary, removed. */
+
+.meta {
+  margin: var(--space-5) 0 0;
+  font-size: var(--text-caption);
+  color: var(--vm-text-secondary);
+}

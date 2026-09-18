@@ -1,0 +1,509 @@
+/* ---- Section 01 — heading ---- */
+.overviewHeading {
+  max-width: 24ch;
+}
+
+.metadataBlock {
+  margin-top: var(--space-6);
+}
+
+/* ---- Section 02 — correction example ---- */
+.correction {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.correctionBefore {
+  margin: 0;
+  color: var(--color-text-muted);
+  text-decoration: line-through;
+  text-decoration-color: var(--color-border-strong);
+  font-size: var(--text-narrative);
+}
+
+.correctionArrow {
+  margin: var(--space-2) 0;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.correctionAfter {
+  margin: 0;
+  color: var(--color-text);
+  font-weight: var(--weight-medium);
+  font-size: var(--text-narrative);
+}
+
+.correctionNote {
+  margin-top: var(--space-4);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+/* ---- Section 03 — governance ---- */
+.governanceHeading {
+  margin-top: var(--space-7);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.governanceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  max-width: 960px;
+  margin-top: var(--space-5);
+}
+
+@media (min-width: 640px) {
+  .governanceGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.governanceCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.governanceNumber {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  color: var(--color-accent);
+}
+
+.governanceTitle {
+  margin: 0;
+  font-size: var(--text-section-heading);
+}
+
+.governanceBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---- Section 04 — UX exploration ---- */
+.flowList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+  max-width: 68ch;
+}
+
+@media (min-width: 640px) {
+  .flowList {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.flowListItem {
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--text-narrative);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+/* Wider evidence column for the flow map — allowed to exceed the ~680px
+   editorial reading width, up to the page's own 1200px container. */
+.evidenceWide {
+  margin-top: var(--space-6);
+  max-width: 100%;
+}
+
+/* ---- Section 05 — five caught instances ---- */
+.instance {
+  padding-top: var(--space-6);
+  margin-top: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+.instance:first-of-type {
+  margin-top: var(--space-5);
+}
+
+.instanceHeader {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-3);
+  margin-bottom: var(--space-4);
+}
+
+.instanceNumber {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  color: var(--color-accent);
+}
+
+.instanceTitle {
+  margin: 0;
+}
+
+.codeSnippet {
+  display: inline-block;
+  margin: var(--space-3) 0;
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-control);
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-on-inverse);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: var(--text-caption);
+}
+
+.vocabList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+
+.vocabItem {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--text-narrative);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.doNotList {
+  margin: var(--space-3) 0 0;
+  padding-left: var(--space-4);
+  list-style: disc;
+  color: var(--color-text-muted);
+  font-size: var(--text-caption);
+}
+.doNotList li {
+  margin-bottom: var(--space-1);
+}
+
+.evidenceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  /* These grids sit inside a narrow (~680px) Container, so the effective
+     cap is the container's width, not this value — kept at 100% rather
+     than a wider max-width the parent can't actually deliver. */
+  max-width: 100%;
+}
+@media (min-width: 640px) {
+  .evidenceGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.evidenceSingle {
+  margin-top: var(--space-5);
+  max-width: 100%;
+}
+
+.synthesisHeading {
+  margin-top: var(--space-7);
+}
+
+.synthesisBlock {
+  margin-top: var(--space-6);
+}
+
+/* ---- Section 06 — visual language ---- */
+.principleList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+  max-width: 68ch;
+}
+
+.principleLabel {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.principleBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.evolutionGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+@media (min-width: 640px) {
+  .evolutionGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.evolutionLabel {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.evolutionBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---- Section 07 — LUFI Avatar System ---- */
+.frameworkNote {
+  font-style: italic;
+  color: var(--color-text-muted);
+}
+
+/* CP10.1: the section's outer Container is now the wide case-study
+   canvas (was narrow, which needlessly constrained the specimen grids)
+   — this wraps just the prose/heading runs back to editorial reading
+   width, while grids/pillars/matrix/comparison sit directly in the wide
+   container. */
+.proseWidth {
+  max-width: var(--container-max-narrow);
+}
+
+.pillarGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+  margin-top: var(--space-6);
+}
+@media (min-width: 640px) {
+  .pillarGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.pillarLabel {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.pillarBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* Small specimen grids — eyes, mouths, flames, core body. Each item keeps
+   its own real aspect ratio (mixed square/portrait sources in the actual
+   files) rather than being forced into a uniform crop. */
+.specimenGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  max-width: 100%;
+}
+
+.specimenItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.specimenLabel {
+  margin: 0;
+  text-align: center;
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+.expressionGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+  max-width: 100%;
+}
+@media (min-width: 768px) {
+  .expressionGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .expressionGrid {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
+
+/* Conceptual model, not a rendered composite — see the caveat text next
+   to it in the page. */
+.matrixFlow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.matrixStep {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.matrixArrow {
+  color: var(--color-text-muted);
+}
+
+.matrixCaveat {
+  margin-top: var(--space-3);
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+/* ---- Section 08 — First Meeting ---- */
+.sequenceGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (min-width: 640px) {
+  .sequenceGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .sequenceGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.homeEvidence {
+  margin-top: var(--space-6);
+  max-width: 360px;
+}
+
+.decisionBlock {
+  margin-top: var(--space-6);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.decisionLabel {
+  margin: 0 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.decisionTitle {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-section-heading);
+}
+
+.avoidsLabel {
+  margin: var(--space-5) 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.avoidsList {
+  margin: 0;
+  padding-left: var(--space-4);
+  list-style: disc;
+  color: var(--color-text-secondary);
+  font-size: var(--text-narrative);
+}
+.avoidsList li {
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Section 09 — Memory & User Control ---- */
+.memoryModelList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-5) 0;
+}
+
+.memoryModelItem {
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--text-narrative);
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.memoryFocal {
+  margin: var(--space-6) auto;
+  max-width: 360px;
+}
+
+.memoryPairGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin: var(--space-6) 0;
+  max-width: 100%;
+}
+@media (min-width: 640px) {
+  .memoryPairGrid {
+    grid-template-columns: repeat(2, 1fr);
+    max-width: 640px;
+  }
+}
+
+.subsectionHeading {
+  margin-top: var(--space-7);
+}
+
+/* ---- Section 15/16 — CTAs ---- */
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}

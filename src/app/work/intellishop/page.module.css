@@ -1,0 +1,240 @@
+/* ---- Section 01 — overview ---- */
+.metadataBlock {
+  margin-top: var(--space-6);
+}
+
+.roleQuote {
+  margin-top: var(--space-6);
+}
+
+/* ---- Generic label above a list ---- */
+.listLabel {
+  margin: var(--space-6) 0 var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* Reusable neutral bulleted list — process steps, original scope, V1 strengths. */
+.plainList {
+  margin: 0;
+  padding-left: var(--space-4);
+  list-style: disc;
+  color: var(--color-text-secondary);
+  font-size: var(--text-narrative);
+}
+.plainList li {
+  margin-bottom: var(--space-1);
+}
+
+/* Unordered chip list — original scope capabilities. */
+.chipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+.chipItem {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--text-narrative);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.subsectionHeading {
+  margin-top: var(--space-7);
+}
+
+/* ---- Section 03 — evidence ---- */
+.evidencePairGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (min-width: 640px) {
+  .evidencePairGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.evidenceWide {
+  margin-top: var(--space-6);
+  max-width: 100%;
+}
+
+.evidenceCaption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.evidenceTagRow {
+  margin-bottom: var(--space-2);
+}
+
+.measuresList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+.measureItem {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--text-caption);
+  color: var(--color-text-secondary);
+  background-color: var(--color-surface);
+}
+
+/* ---- Section 04 — audit ---- */
+.transitionRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin: var(--space-5) 0;
+  font-size: var(--text-caption);
+  color: var(--color-text-muted);
+}
+
+.auditGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (min-width: 640px) {
+  .auditGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.auditCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.auditNumber {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  color: var(--color-accent);
+}
+
+.auditTitle {
+  margin: 0;
+  font-size: var(--text-section-heading);
+}
+
+.auditBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+/* ---- Shared across Sections 05-07 ---- */
+.calloutBlock {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.calloutTitle {
+  margin: 0 0 var(--space-3);
+  font-size: var(--text-section-heading);
+}
+
+.stackList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-5) 0;
+  max-width: 68ch;
+}
+
+.stackLabel {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+.stackBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.evidenceFocal {
+  margin: var(--space-6) auto;
+  max-width: 480px;
+}
+
+.repositionRow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.repositionName {
+  min-width: 12ch;
+  font-weight: var(--weight-medium);
+  color: var(--color-text);
+}
+
+.repositionBody {
+  flex: 1;
+  min-width: 200px;
+  color: var(--color-text-secondary);
+  font-size: var(--text-narrative);
+}
+
+/* ---- Section 08 — low-fi sequence ---- */
+.lowfiGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (min-width: 640px) {
+  .lowfiGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 1024px) {
+  .lowfiGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.findingTitle {
+  margin-top: var(--space-6);
+  font-size: var(--text-section-heading);
+  font-weight: var(--weight-bold);
+}
+
+/* ---- Section 11 — focal group (Shopping Mode) ---- */
+.focalLarge {
+  margin: var(--space-6) auto;
+  max-width: 560px;
+}
+
+/* ---- Section 13/14 — decisions ---- */

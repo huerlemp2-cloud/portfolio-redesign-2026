@@ -1,0 +1,20 @@
+.figure {
+  margin: 0;
+}
+
+.frame {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+}
+
+.caption {
+  margin-top: var(--space-3);
+}

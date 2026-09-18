@@ -1,0 +1,731 @@
+/**
+ * Home — Visual Master (Checkpoint 8A)
+ *
+ * Dark cinematic / quiet luxury / editorial product design, per the
+ * approved reference. Uses the --vm-* tokens added to tokens.css for this
+ * checkpoint. Scoped entirely to this page — no other route is affected.
+ */
+
+/* ---- Shared reveal animation, respects reduced motion ---- */
+@keyframes vm-reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes vm-line-reveal {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes vm-image-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.reveal {
+  animation: vm-reveal-up 0.6s var(--ease-standard) both;
+}
+.revealLine {
+  transform-origin: left;
+  animation: vm-line-reveal 0.5s var(--ease-standard) both;
+}
+.revealImage {
+  animation: vm-image-reveal 0.7s var(--ease-standard) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .revealLine,
+  .revealImage {
+    animation: none;
+  }
+}
+
+/* ---- Hero ---- */
+/* !important on background/color only: Section's shared `.default` variant
+   (in Section.module.css) has identical CSS specificity to this class, and
+   Next.js doesn't guarantee which separate CSS Module's rule wins on
+   source order — without this, the dark override could silently lose to
+   the light default depending on build/bundle order. Narrow, deliberate
+   use, not a general escape hatch. */
+.hero {
+  position: relative;
+  background-color: var(--vm-obsidian) !important;
+  color: var(--vm-ivory) !important;
+  overflow: hidden;
+}
+
+/* Full-Hero photographic environment — one unified scene, not a
+   panel confined to the product column. object-position keeps the
+   plate's own dark left zone (generated specifically for the headline
+   to sit over) in view rather than cropping it away. */
+.heroEnvironment {
+  z-index: 0;
+  object-fit: cover;
+  object-position: 46% 55%;
+}
+
+/* Left→center readability gradient: strong over the headline, fading to
+   near-transparent by the point the device/stone should read clearly.
+   The plate's own right-side metadata darkening is handled locally by
+   .productMeta::before, not here. */
+.heroEnvironmentOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(11, 13, 15, 0.82) 0%,
+    rgba(11, 13, 15, 0.68) 22%,
+    rgba(11, 13, 15, 0.32) 42%,
+    rgba(11, 13, 15, 0.05) 60%,
+    transparent 72%
+  );
+  pointer-events: none;
+}
+
+.heroGrid {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .heroGrid {
+    /* Approximates the approved 35–38% headline / 62–65% device+metadata
+       split — the device and metadata are further distributed within
+       the right track (see .productStage / .productMeta) rather than
+       forming a second rigid panel. */
+    grid-template-columns: 37% 1fr;
+    gap: var(--space-6);
+  }
+}
+
+.heroCopy {
+  order: 1;
+}
+
+.eyebrowRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.eyebrow {
+  margin: 0;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-bronze-highlight);
+}
+
+.eyebrowLine {
+  display: block;
+  width: 40px;
+  height: 1px;
+  background-color: var(--vm-bronze);
+}
+
+.headline {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(2.5rem, 2rem + 3vw, 4.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  color: var(--vm-ivory);
+  max-width: 14ch;
+}
+
+.disciplineLine {
+  margin: var(--space-5) 0 0;
+  font-size: var(--text-narrative);
+  font-weight: var(--weight-medium);
+  letter-spacing: 0.03em;
+  color: var(--vm-bronze-highlight);
+}
+
+.supportingStatement {
+  margin: var(--space-4) 0 0;
+  max-width: 42ch;
+  font-size: var(--text-narrative);
+  line-height: var(--leading-relaxed);
+  color: var(--vm-text-secondary);
+}
+
+.heroActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}
+
+.exploreLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-ivory);
+}
+
+.exploreArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--vm-bronze);
+  border-radius: 50%;
+  color: var(--vm-bronze-highlight);
+  font-size: 1.1rem;
+  transition: transform var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+.exploreLink:hover .exploreArrow {
+  transform: translateX(3px);
+  background-color: var(--vm-surface);
+}
+
+.scrollHint {
+  display: none;
+  margin-top: var(--space-7);
+  padding-left: var(--space-3);
+  border-left: 1px solid var(--vm-hairline);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-text-secondary);
+}
+
+@media (min-width: 1024px) {
+  .scrollHint {
+    display: block;
+  }
+}
+
+/* ---- Hero flagship product presentation ---- */
+.heroProduct {
+  order: 2;
+  position: relative;
+}
+
+.productStage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Hero-only sizing + the perspective root for HeroStageTilt's device
+   rotation. This wrapper no longer carries its own background — the
+   photographic environment plate is now a full-Hero layer (see .hero /
+   .heroEnvironment above), so the device sits directly on the unified
+   scene rather than inside a separate panel. */
+.productStageHero {
+  min-height: 420px;
+  perspective: 900px;
+}
+
+.heroDevice {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 320px;
+  /* Grounding patch: shifted down/right so the phone's base reads as
+     resting on the stone ledge rather than floating in front of it,
+     plus a slight added rotateZ to match the ledge's plane. Same
+     rotateY/rotateX resting lean as before — not changed. */
+  transform: translate(16px, 42px) rotateY(-7deg) rotateX(3deg) rotateZ(0.8deg);
+  transform-style: preserve-3d;
+  /* Tightened from the previous 0 40px 60px — that large, low, soft
+     offset was itself reading as a "floating" cue. This stays close to
+     the device, doing less independent work now that the dedicated
+     contact shadow below (::after) carries the grounding. */
+  filter: drop-shadow(0 18px 22px rgba(0, 0, 0, 0.5));
+}
+
+/* Restrained contact shadow at the device base — short, dark, soft,
+   attached directly to the phone (moves/tilts with it), not a large
+   floating glow. */
+.heroDevice::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  bottom: -5px;
+  width: 58%;
+  height: 12px;
+  transform: translateX(-50%);
+  background: radial-gradient(50% 100% at 50% 50%, rgba(0, 0, 0, 0.55), transparent 72%);
+  filter: blur(4px);
+  pointer-events: none;
+}
+
+.productMeta {
+  position: relative;
+  isolation: isolate;
+  order: 3;
+  margin-top: var(--space-6);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* Restrained localized readability aid behind the metadata text — a soft
+   fading gradient, not an opaque panel/card. Sized generously beyond the
+   text's own box (negative inset) so it reads as ambient darkening, not
+   a hard-edged shape. */
+.productMeta::before {
+  content: '';
+  position: absolute;
+  inset: -1.5rem -1rem;
+  z-index: -1;
+  background: radial-gradient(65% 90% at 70% 40%, rgba(11, 13, 15, 0.65), transparent 75%);
+  pointer-events: none;
+}
+
+.productLabel {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: var(--text-project-title);
+  color: var(--vm-ivory);
+}
+
+.productIndex {
+  font-family: var(--font-body);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  color: var(--vm-text-secondary);
+  margin-right: var(--space-2);
+}
+
+.productRole {
+  margin: var(--space-1) 0 0;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-bronze-highlight);
+}
+
+.productDescription {
+  margin: var(--space-2) 0 0;
+  max-width: 32ch;
+  font-size: var(--text-narrative);
+  color: var(--vm-text-secondary);
+}
+
+.productLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-bronze-highlight);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--duration-fast) var(--ease-standard);
+}
+.productLink:hover {
+  border-color: var(--vm-bronze-highlight);
+}
+
+/* Kept at 1180px specifically (not 1024px, where the two-column Hero
+   itself activates) — between 1024–1179px the metadata stays in normal
+   flow so it can't collide with the phone; only from 1180px is there
+   enough room for it to float at the corner. */
+@media (min-width: 1180px) {
+  .productMeta {
+    flex-direction: column;
+    align-items: flex-start;
+    position: absolute;
+    right: -1.5rem;
+    bottom: var(--space-6);
+    max-width: 220px;
+    text-align: left;
+  }
+  .heroProduct {
+    position: relative;
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+  }
+}
+
+/* ---- Selected Work ---- */
+.selectedWork {
+  background-color: var(--vm-charcoal) !important;
+  color: var(--vm-ivory) !important;
+}
+
+.selectedWorkHeader {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+@media (min-width: 1024px) {
+  .selectedWorkHeader {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+  }
+}
+
+.selectedWorkTitle {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.75rem, 1.5rem + 1.4vw, 2.75rem);
+  line-height: 1.15;
+  max-width: 18ch;
+  color: var(--vm-ivory);
+}
+
+.selectedWorkIntro {
+  margin: 0;
+  max-width: 34ch;
+  font-size: var(--text-narrative);
+  color: var(--vm-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+/* < 768px: 1 column (default above). 768–1179px: 2 columns. >= 1180px:
+   3 columns — explicit steps, not a single 768px jump straight to 3. */
+@media (min-width: 768px) {
+  .workGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1180px) {
+  .workGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.workCard {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--vm-hairline);
+  border-radius: var(--radius-surface);
+  background-color: var(--vm-surface);
+  overflow: hidden;
+  transition: border-color var(--duration-standard) var(--ease-standard);
+}
+.workCard:hover {
+  border-color: var(--vm-bronze);
+}
+
+.workCardMedia {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  aspect-ratio: 4 / 3;
+  background-color: var(--vm-obsidian);
+}
+
+/* Per-project staging environments — same family (obsidian/charcoal/
+   bronze), deliberately different material character per project. All
+   pseudo-elements/glows here are scoped to .workCardMedia (which now
+   clips via overflow: hidden + isolation: isolate) — nothing can visually
+   escape into .workCardBody. */
+
+/* LUFI — restrained basalt suggestion (one simple angled facet, not the
+   Hero's two-facet system) + warm bronze edge light only. Deliberately
+   not a literal re-use of the Hero scene. */
+.workStageLufi {
+  position: relative;
+  background: linear-gradient(160deg, var(--vm-charcoal), var(--vm-obsidian));
+}
+.workStageLufi::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(30, 32, 36, 0.7) 0%, transparent 45%);
+  pointer-events: none;
+}
+.workStageLufi::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(45% 45% at 88% 8%, rgba(208, 138, 88, 0.22), transparent 70%);
+  pointer-events: none;
+}
+
+/* IntelliShop — cooler graphite/titanium, neutral studio highlight (no
+   bronze, no blue/purple) so the authentic white UI is the contrast. */
+.workStageIntelliShop {
+  position: relative;
+  background: linear-gradient(160deg, #23262b, #15171a);
+}
+.workStageIntelliShop::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(50% 40% at 20% 0%, rgba(220, 222, 226, 0.1), transparent 70%);
+  pointer-events: none;
+}
+
+/* Storyteller — softer warm-charcoal studio, a hinted resting surface
+   beneath the laptop, ambient (not edge) bronze light — more diffuse
+   than LUFI's. */
+.workStageStoryteller {
+  position: relative;
+  background: linear-gradient(160deg, var(--vm-charcoal), var(--vm-obsidian));
+}
+.workStageStoryteller::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(70% 50% at 50% 15%, rgba(208, 138, 88, 0.12), transparent 65%);
+  pointer-events: none;
+}
+.workStageStoryteller::after {
+  /* Subtle resting-surface shadow beneath the device. */
+  content: '';
+  position: absolute;
+  left: 10%;
+  right: 10%;
+  bottom: 8%;
+  height: 18%;
+  background: radial-gradient(50% 100% at 50% 100%, rgba(0, 0, 0, 0.5), transparent 75%);
+  pointer-events: none;
+}
+
+.workDeviceLufi {
+  position: absolute;
+  z-index: 1;
+  left: 60%;
+  top: 57%;
+  /* Width-driven (not height-driven): at 390:844 inside a 4:3 media box,
+     height-based sizing under-filled the card (~30% of card width).
+     Width-based sizing lets the phone actually dominate the media area;
+     intentional top/bottom crop against workCardMedia's overflow: hidden
+     is expected and fine — it can never cross into workCardBody, which
+     is a separate, unrelated containment boundary. */
+  width: 58%;
+  height: auto;
+  aspect-ratio: 390 / 844;
+  transform: translate(-50%, -50%) rotateZ(-5deg);
+  transition: transform var(--duration-standard) var(--ease-standard);
+}
+.workCard:hover .workDeviceLufi {
+  transform: translate(-50%, -50%) rotateZ(-5deg) scale(1.025);
+}
+
+.workDeviceIntelliShop {
+  position: absolute;
+  z-index: 1;
+  left: 53%;
+  top: 55%;
+  /* Width-driven, same reasoning as LUFI above — height-based sizing on
+     a 780:1624 screenshot left it at roughly a third of the card width. */
+  width: 54%;
+  height: auto;
+  aspect-ratio: 780 / 1624;
+  transform: translate(-50%, -50%) rotateZ(4deg);
+  transition: transform var(--duration-standard) var(--ease-standard);
+}
+.workCard:hover .workDeviceIntelliShop {
+  transform: translate(-50%, -50%) rotateZ(4deg) scale(1.025);
+}
+
+.workDeviceStoryteller {
+  position: absolute;
+  z-index: 1;
+  left: 50%;
+  top: 48%;
+  /* Landscape device — sized by width (not height) since the real
+     screenshot is very wide (1900:879); ~102% of media width — a
+     touch wider than the media box itself, intentional slight crop at
+     the sides, contained by workCardMedia's overflow: hidden, never
+     into workCardBody. */
+  width: 102%;
+  aspect-ratio: 1900 / 879;
+  transform: translate(-50%, -50%) rotateZ(-2deg);
+  transition: transform var(--duration-standard) var(--ease-standard);
+}
+.workCard:hover .workDeviceStoryteller {
+  transform: translate(-50%, -50%) rotateZ(-2deg) scale(1.03);
+}
+
+.workCardNumber {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 2;
+  font-size: var(--text-caption);
+  font-weight: var(--weight-semibold);
+  color: var(--vm-ivory);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+.workCardBody {
+  position: relative;
+  z-index: 10;
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  flex: 1;
+}
+
+.workCardTitle {
+  margin: 0;
+  font-size: var(--text-narrative);
+  font-weight: var(--weight-semibold);
+  color: var(--vm-ivory);
+}
+.workCardTitle span {
+  color: var(--vm-text-secondary);
+  font-weight: var(--weight-regular);
+}
+
+.workCardDescription {
+  margin: 0;
+  font-size: var(--text-caption);
+  color: var(--vm-text-secondary);
+  line-height: var(--leading-normal);
+  flex: 1;
+}
+
+.workCardFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.workCardArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--vm-hairline);
+  border-radius: 50%;
+  color: var(--vm-bronze-highlight);
+  font-size: 0.9rem;
+  transition: transform var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard);
+}
+.workCard:hover .workCardArrow {
+  transform: translateX(2px);
+  border-color: var(--vm-bronze);
+}
+
+/* ---- Closing editorial statement ---- */
+.closing {
+  background-color: var(--vm-obsidian) !important;
+  color: var(--vm-ivory) !important;
+}
+
+.closingGrid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+@media (min-width: 1024px) {
+  .closingGrid {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-7);
+  }
+}
+
+.closingQuoteBlock {
+  display: flex;
+  gap: var(--space-4);
+  max-width: 44ch;
+}
+
+.closingMark {
+  flex-shrink: 0;
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  line-height: 1;
+  color: var(--vm-bronze);
+}
+
+.closingQuote {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: clamp(1.375rem, 1.2rem + 0.8vw, 1.875rem);
+  line-height: 1.3;
+  color: var(--vm-ivory);
+}
+
+.closingSide {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 32ch;
+}
+
+.closingSupporting {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--vm-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.closingLink {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  align-self: flex-start;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-bronze-highlight);
+}
+
+.closingArrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--vm-bronze);
+  border-radius: 50%;
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+.closingLink:hover .closingArrow {
+  transform: translateX(3px);
+}

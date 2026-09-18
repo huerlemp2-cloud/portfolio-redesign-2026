@@ -1,0 +1,174 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--vm-obsidian);
+  border-bottom: 1px solid var(--vm-hairline);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--header-height);
+  padding-block: var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.monogram {
+  display: block;
+  border-radius: 4px;
+}
+
+.brandName {
+  font-family: var(--font-body);
+  font-size: var(--text-narrative);
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--vm-ivory);
+}
+
+/* ---- Desktop nav ---- */
+.desktopNav {
+  display: none;
+  gap: var(--space-5);
+}
+
+.navLink {
+  position: relative;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+  color: var(--vm-text-secondary);
+  padding-block: var(--space-1);
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+.navLink:hover {
+  color: var(--vm-bronze-highlight);
+}
+
+/* Subtle current-page indicator — a thin underline, not a pill/tab. */
+.navLink[aria-current='page'] {
+  color: var(--vm-ivory);
+}
+.navLink[aria-current='page']::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  background-color: var(--vm-bronze);
+}
+
+/* ---- Right-side positioning detail (desktop only — the header stays
+   uncluttered on mobile, where the primary identity is enough). ---- */
+.positioningDetail {
+  display: none;
+  align-items: center;
+  gap: var(--space-2);
+  margin: 0;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--vm-text-secondary);
+  white-space: nowrap;
+}
+
+.positioningDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--vm-bronze);
+  flex-shrink: 0;
+}
+
+/* ---- Mobile trigger ---- */
+.trigger {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-width: 44px;
+  min-height: 44px;
+  padding-inline: var(--space-2);
+  color: var(--vm-ivory);
+}
+
+.triggerLabel {
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wide);
+}
+
+.triggerIcon {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 4px;
+  width: 20px;
+}
+.triggerIcon span {
+  display: block;
+  height: 1.5px;
+  background-color: var(--vm-ivory);
+}
+/* Deliberately no rotate/morph animation between states — a static
+   two-line "open" mark keeps the trigger legible without decorative motion. */
+.triggerIcon[data-open='true'] span:first-child {
+  display: none;
+}
+.triggerIcon[data-open='true'] span:last-child {
+  width: 100%;
+}
+
+/* ---- Mobile panel ---- */
+.mobilePanel {
+  border-top: 1px solid var(--vm-hairline);
+  background-color: var(--vm-obsidian);
+}
+
+.mobileList {
+  display: flex;
+  flex-direction: column;
+  padding-block: var(--space-3);
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  font-size: var(--text-section-heading);
+  font-weight: var(--weight-bold);
+  color: var(--vm-ivory);
+  border-bottom: 1px solid var(--vm-hairline);
+}
+
+.mobileNavLink[aria-current='page'] {
+  color: var(--vm-bronze-highlight);
+}
+
+@media (min-width: 768px) {
+  .desktopNav {
+    display: flex;
+  }
+  .trigger,
+  .mobilePanel {
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .positioningDetail {
+    display: flex;
+  }
+}

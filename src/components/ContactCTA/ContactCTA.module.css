@@ -1,0 +1,22 @@
+.block {
+  text-align: center;
+}
+
+.title {
+  max-width: 24ch;
+  margin-inline: auto;
+}
+
+.description {
+  margin: var(--space-3) auto 0;
+  max-width: 54ch;
+  color: var(--color-text-muted);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-top: var(--space-5);
+}

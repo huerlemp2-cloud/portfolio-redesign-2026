@@ -1,0 +1,78 @@
+/* ---- Hero / overview ---- */
+.metadataBlock {
+  margin-top: var(--space-6);
+}
+
+.subsectionHeading {
+  margin-top: var(--space-7);
+}
+
+.plainList {
+  margin: 0;
+  padding-left: var(--space-4);
+  list-style: disc;
+  color: var(--color-text-secondary);
+  font-size: var(--text-narrative);
+}
+.plainList li {
+  margin-bottom: var(--space-1);
+}
+
+.stackList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: var(--space-5) 0;
+  max-width: 68ch;
+}
+.stackLabel {
+  margin: 0 0 var(--space-1);
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+.stackBody {
+  margin: 0;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.calloutBlock {
+  margin: var(--space-6) 0;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-surface);
+  background-color: var(--color-surface);
+}
+
+.evidencePairGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-4);
+  margin-top: var(--space-5);
+}
+@media (min-width: 640px) {
+  .evidencePairGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.evidenceWide {
+  margin-top: var(--space-6);
+  max-width: 100%;
+}
+
+.evidenceTagRow {
+  margin-bottom: var(--space-2);
+}
+
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}

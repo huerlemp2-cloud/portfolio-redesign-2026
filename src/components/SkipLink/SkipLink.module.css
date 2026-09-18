@@ -1,0 +1,18 @@
+.link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: 200;
+  transform: translateY(-150%);
+  padding: var(--space-3) var(--space-4);
+  background-color: var(--color-bg-inverse);
+  color: var(--color-text-on-inverse);
+  border-radius: var(--radius-control);
+  font-size: var(--text-caption);
+  font-weight: var(--weight-medium);
+  transition: transform var(--duration-fast) var(--ease-standard);
+}
+
+.link:focus {
+  transform: translateY(0);
+}

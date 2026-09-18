@@ -1,0 +1,33 @@
+.lead {
+  max-width: 60ch;
+  font-size: var(--text-narrative);
+  color: var(--color-text-secondary);
+  line-height: var(--leading-relaxed);
+}
+
+.subsectionHeading {
+  margin-top: var(--space-7);
+}
+
+.chipList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-4) 0;
+}
+.chipItem {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-control);
+  font-size: var(--text-caption);
+  color: var(--color-text);
+  background-color: var(--color-surface);
+}
+
+.ctaGroup {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+  margin-top: var(--space-6);
+}

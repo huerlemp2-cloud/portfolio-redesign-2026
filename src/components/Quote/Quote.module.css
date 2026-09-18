@@ -1,0 +1,24 @@
+.quote {
+  margin: var(--space-5) 0;
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--color-accent);
+}
+
+.label {
+  display: block;
+  font-size: var(--text-label);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin-bottom: var(--space-2);
+}
+
+.text {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  font-size: var(--text-project-title);
+  line-height: var(--leading-snug);
+  color: var(--color-text);
+  margin: 0;
+}
